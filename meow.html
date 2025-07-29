@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💗 2 years together</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f4e4ec;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2em;
+    }
+
+    .glass-container {
+      background: rgba(0, 0, 0, 0.45); /* Черноватая полупрозрачность */
+      backdrop-filter: blur(12px);
+      border-radius: 30px;
+      padding: 2em;
+      max-width: 800px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #ec4899;
+      margin: 0;
+    }
+
+    p.subtitle {
+      font-size: 1.2em;
+      margin: 1.5em auto 2em;
+      max-width: 600px;
+      color: #f4e4ec;
+    }
+
+    .memory-card {
+      background: rgba(255, 255, 255, 0.9);
+      margin: 1em auto;
+      padding: 1em;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 90%;
+      transition: all 0.5s ease;
+    }
+
+    .memory-card img {
+      width: 100%;
+      border-radius: 15px;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .memory-card h2 {
+      margin-top: 0.8em;
+      color: #c0264e;
+    }
+
+    .memory-card p {
+      color: #555;
+    }
+
+    button {
+      background-color: #ec4899;
+      color: white;
+      border: none;
+      padding: 0.7em 2em;
+      border-radius: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 1.5em;
+    }
+
+    button:hover {
+      background-color: #db2777;
+    }
+
+    footer {
+      margin-top: 3em;
+      font-size: 0.9em;
+      color: #fbcfe8;
+      padding-bottom: 1em;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glass-container">
+    <div class="header">
+      <img src="me.png" alt="Я" class="avatar">
+      <h1>💕11.08.2023 - 11.08.2025💕</h1>
+      <img src="him.png" alt="Он" class="avatar">
+    </div>
+
+    <p class="subtitle">Хочу посвятить тебе небольшой сайтик, малыш. Спасибо за проведенные моменты, как и счастливые, так и грустные. Ты очень особенный для меня и я хочу провести с тобой всю жизнь.</p>
+
+    <div class="memory-card fade-in" id="memory">
+      <img src="1.jpg" alt="Воспоминание" id="memory-img">
+      <h2 id="memory-title">Наша первая встреча</h2>
+      <p id="memory-desc"> Помнишь, как мы впервые встретились? Это было угарно, но однозначно того стоило. Кто знает, может у тебя бы досих пор не было бы девушки.. Подобрала тебя, котеночек. Или щеночек. Котощеночек. Ну ичо еще сказать.. Люблю тебя. </p>
+    </div>
+
+    <button onclick="nextMemory()">Следующий момент 💖 →</button>
+
+    <footer>С любовью, от Ханшайым :P 💌</footer>
+  </div>
+
+  <script>
+    const memories = [
+      { title: "Наша первая встреча", desc: "Помнишь, как мы впервые встретились? Это было угарно, но однозначно того стоило. Кто знает, может у тебя бы досих пор не было бы девушки.. Подобрала тебя, котеночек", img: "1.jpg" },
+      { title: "Твои сюрпризы", desc: "Ты всегда умеешь удивить меня по-настоящему, обрадовать. Ну и взбесить тоже", img: "2.jpg" },
+      { title: "Наши глупости", desc: "Мы с тобой дураки, но это все равно опыт — и в этом своя доля счастья.", img: "4.jpg" },
+      { title: "Наши планы", desc: "Мы мечтали о будущем, и я знаю — оно будет прекрасным. Дело лишь времени", img: "10.jpg" },
+      { title: "Пошлости", desc: "Я люблю тебя во всем, но выделю твои умения сказать что-то такое, что долго заставляет быть в ахуе. Ошейник, футфетиш.. Мдэээээ. Нуачо я не против..", img: "5.jpg" },
+      { title: "Ну, а теперь подарочки", desc: "Зайди в БС :)", img: "8.jpg"  },
+    ];
+
+    let current = 0;
+
+    function nextMemory() {
+      const card = document.getElementById("memory");
+      card.classList.remove("fade-in");
+      void card.offsetWidth;
+      card.classList.add("fade-in");
+
+      current = (current + 1) % memories.length;
+      document.getElementById("memory-title").textContent = memories[current].title;
+      document.getElementById("memory-desc").textContent = memories[current].desc;
+      document.getElementById("memory-img").src = memories[current].img;
+    }
+  </script>
+
+</body>
+</html>
